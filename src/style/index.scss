@@ -1,0 +1,33 @@
+.data-view {
+  background: #fff;
+  margin-top: 60px;
+}
+
+header {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #dcdcdc;
+  padding: 0 24px;
+  .title {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
+  }
+  .tools {
+    flex: 1 1 auto;
+    margin-left: 24px;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+}
+main {
+  padding: 24px;
+  min-height: 120px;
+}
+
+.content-warp {
+  width: 1200px;
+  margin: 0 auto;
+}

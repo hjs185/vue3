@@ -1,26 +1,35 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import Home from "../views/Home.vue";
+import EntyExct from "../views/enty-exct.vue";
+import EntyAttrExct from "../views/enty-attr-exct.vue";
+import EntyRelaExct from "../views/enty-rela-exct.vue";
+import EvenClass from "../views/even-class.vue";
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
-    component: Home,
+    path: "/entyExct",
+    name: "EntyExct",
+    component: EntyExct
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    path: "/entyAttrExct",
+    name: "EntyAttrExct",
+    component: EntyAttrExct
   },
+  {
+    path: "/entyRelaExct",
+    name: "EntyRelaExct",
+    component: EntyRelaExct
+  },
+  {
+    path: "/evenClass",
+    name: "EvenClass",
+    component: EvenClass
+  }
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes,
+  routes
 });
 
 export default router;
