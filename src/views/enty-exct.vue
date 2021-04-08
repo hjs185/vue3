@@ -27,6 +27,8 @@
 <script>
 import CommonWrap from "./common";
 // import { ref } from "vue";
+// import { Axios } from "@/axios";
+
 const TITILE = "实体抽取";
 const TEXTLIST = ["ha1", "ha2", "ha3", "ha4"];
 export default {
@@ -34,9 +36,16 @@ export default {
     CommonWrap,
   },
   setup() {
+    // 开始分析
     const handleAnalysis = (val) => {
       console.log(val);
+      // Axios("/nlp/re", [
+      //   { key: "query", value: "图226美国AN/TSQ─109雷达侦察系统" },
+      // ]).then((res) => {
+      //   console.log(res);
+      // });
     };
+
     return {
       titleMsg: TITILE,
       textList: TEXTLIST,

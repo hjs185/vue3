@@ -52,7 +52,7 @@ export default {
   setup(props, ctx) {
     let count = 0;
     let myContent = ref("");
-    let analysisLoading = false;
+    let analysisLoading = ref(false);
     // 初始化赋值
     myContent.value = toRefs(props.textList)[0].value;
     // 随机切换示例
