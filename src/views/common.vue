@@ -48,11 +48,14 @@ export default {
       type: Array,
       default: () => [],
     },
+    analysisLoading: {
+      type: Boolean,
+      default: true,
+    },
   },
   setup(props, ctx) {
     let count = 0;
     let myContent = ref("");
-    let analysisLoading = ref(false);
     // 初始化赋值
     myContent.value = toRefs(props.textList)[0].value;
     // 随机切换示例
@@ -63,6 +66,7 @@ export default {
         count = 0;
       }
       myContent.value = props.textList[count];
+      ctx.emit("handleAnalysis", myContent.value);
     };
     // 开始分析
     const handleAnalysis = () => {
@@ -75,7 +79,6 @@ export default {
     return {
       handleRandom,
       myContent,
-      analysisLoading,
       handleAnalysis,
       handleClear,
     };

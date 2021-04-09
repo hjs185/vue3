@@ -3,6 +3,7 @@
     <CommonWrap
       :titleMsg="titleMsg"
       :textList="textList"
+      :analysisLoading="loading"
       @handleAnalysis="handleAnalysis"
     ></CommonWrap>
     <div class="data-view content-warp">
@@ -10,7 +11,7 @@
         <div class="title">分析结果</div>
         <div class="tools"></div>
       </header>
-      <main>
+      <main class="content-main" v-loading="loading">
         <div id="person-info-graph" class="person-info-wrap"></div>
         <div class="from-box">
           <el-table
@@ -71,10 +72,12 @@ export default {
 
     // 开始分析
     const handleAnalysis = (val) => {
+      loading.value = true;
       Axios("/nlp/re", [{ key: "query", value: val }]).then((datas) => {
+        loading.value = false;
         let { code, object } = datas.data;
         if (code === "200") {
-          resultData.value = object.output.res[0];
+          resultData.value = object.output.res;
           getData();
         }
       });
