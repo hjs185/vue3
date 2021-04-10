@@ -20,6 +20,7 @@
             @cell-click="tabClick"
             @header-click="tabHeadClick"
             :header-cell-style="{ background: '#f5f7fa' }"
+            height="380"
           >
             <el-table-column prop="subject" label="实体1"> </el-table-column>
             <el-table-column prop="predicate" label="关系指示词">
