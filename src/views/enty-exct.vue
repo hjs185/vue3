@@ -169,6 +169,31 @@ export default {
             obj.typeName = "武器装备";
             obj.type = "WEAPONRY";
             break;
+          // 新增类
+          case "人物":
+            obj.typeName = "人物";
+            obj.type = "人物";
+            break;
+          case "国家":
+            obj.typeName = "国家";
+            obj.type = "国家";
+            break;
+          case "地点":
+            obj.typeName = "地点";
+            obj.type = "地点";
+            break;
+          case "武器装备":
+            obj.typeName = "武器装备";
+            obj.type = "武器装备";
+            break;
+          case "组织机构":
+            obj.typeName = "组织机构";
+            obj.type = "组织机构";
+            break;
+          case "职位":
+            obj.typeName = "职位";
+            obj.type = "职位";
+            break;
           default:
             break;
         }
