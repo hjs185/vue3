@@ -201,6 +201,9 @@ export default {
   stroke-width: 2px;
   stroke: red;
 }
+.person-info-wrap .node:hover {
+  fill: transparent;
+}
 #person-info-graph .ring {
   fill: rgba(40, 149, 235, 0.35);
 }

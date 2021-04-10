@@ -1,16 +1,13 @@
 <template>
   <div id="nav">
-    <router-link to="/entyExct" custom>
-      <p role="link" @click="handleRouter('EntyExct')">实体抽取</p>
-    </router-link>
-    <router-link to="/entyAttrExct" custom>
-      <p role="link" @click="handleRouter('EntyAttrExct')">实体属性抽取</p>
-    </router-link>
-    <router-link to="/entyRelaExct" custom>
-      <p role="link" @click="handleRouter('EntyRelaExct')">实体关系抽取</p>
-    </router-link>
-    <router-link to="/evenClass" custom>
-      <p role="link" @click="handleRouter('EvenClass')">事件分类</p>
+    <router-link :to="'/' + item" custom v-for="item in routerList" :key="item">
+      <p
+        role="link"
+        @click="handleRouter(item)"
+        :class="{ 'active-color': item === strName }"
+      >
+        {{ LABELVALUE[item] }}
+      </p>
     </router-link>
   </div>
   <router-view />
@@ -18,16 +15,36 @@
 
 <script>
 import * as vueRouter from "vue-router";
+import { ref } from "vue";
+const LABELVALUE = {
+  entyExct: "实体抽取",
+  entyAttrExct: "实体属性抽取",
+  entyRelaExct: "实体关系抽取",
+  evenClass: "事件分类",
+};
 export default {
   setup() {
+    const routerList = ref([
+      "entyExct",
+      "entyAttrExct",
+      "entyRelaExct",
+      "evenClass",
+    ]);
+    let strName = ref("entyExct");
+
     let router = vueRouter.useRouter();
     const handleRouter = (val) => {
+      strName.value = val;
+      val = val.replace(val[0], val[0].toUpperCase());
       router.push({
         name: val,
       });
     };
     return {
       handleRouter,
+      routerList,
+      strName,
+      LABELVALUE,
     };
   },
 };
@@ -57,5 +74,8 @@ body {
       color: green;
     }
   }
+}
+.active-color {
+  color: green;
 }
 </style>

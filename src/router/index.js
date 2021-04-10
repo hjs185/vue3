@@ -6,6 +6,10 @@ import EvenClass from "../views/even-class.vue";
 
 const routes = [
   {
+    path: "/",
+    redirect: { name: "EntyExct" }
+  },
+  {
     path: "/entyExct",
     name: "EntyExct",
     component: EntyExct
