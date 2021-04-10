@@ -19,6 +19,7 @@
           placeholder="请输入内容"
           :maxlength="500"
           show-word-limit
+          autosize
         ></el-input>
       </main>
       <footer>

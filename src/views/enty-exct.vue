@@ -54,10 +54,16 @@ import { Axios } from "@/axios";
 
 const TITILE = "实体抽取";
 const TEXTLIST = [
+  "中国军事专家李杰27日对《环球时报》记者表示，目前来看，从飞行路线、机型选择、架次规模来看，美军机仍处于常态化巡逻，但不排除美军在亚太地区核动力航母因疫情“趴窝”后，强化美军机侦察、巡逻来弥补大中型战舰不足的考量。",
+  "河北冠志农业科技有限公司生产部经理许晓燕介绍称，系统后台通过实时数据分析，可实现棚内自动增降温、自动加抽湿、自动卷帘等功能，农户也可通过手机APP（应用程序）进行手动远程操作，让棚内环境更适合作物生长。",
+  "中建交通山东分公司菏泽市万福河桥梁工程项目部定时给复工一线工人送防护用品和矿泉水等，确保复工人员安全有保障和能喝到清凉的生活饮用水，不论是白天还是晚上从不间断",
+  "美国太空军武器发展与获取中心代表斯蒂芬·布罗根称，这些地面干扰系统将主要用于在冲突初期暂时阻断航天器的通信信号，而不是摧毁卫星。",
+  "俄罗斯卫星通讯社3月13日报道，据知情人士透露，俄罗斯尚未从印度尼西亚处收到有关放弃购买苏-35战斗机合同的通知",
+  `Arleigh Burke-class guided-missile destroyer USS McCampbell (DDG-85) transited the Taiwan Strait on Wednesday,a week before Taiwan’s anti-China reunification president is inaugurated for a second term.Since taking office,President Joseph Biden has sought to implement a stated intent to rejoin the JCPOA,including welcoming talks with Iran toward that end.Administration officials have acknowledged that a U.S.return to the agreement would entail an easing of the stipulated U.S. economic sanctions.`,
+  "尽管五角大楼发言人拒绝对这份报告发表评论，但《防务新闻》暗示，该报告内容与美国防长埃斯珀近来的讲话相呼应：五角大楼希望不再强调航母是其海军力量投射的核心，而把更多重点放在无人技术上。",
+  "“罗斯福”号航母访问越南的计划在访问前几周就得到了美国军方高层的批准，其中包括印太司令部司令菲尔·戴维森上将。",
+  "ABM-X-3 反弹道导弹分层防御系统，是原苏联在莫斯科附近部署的一种新型反弹道导弹防御系统。",
   "得知情况后，中国信保靠前服务，主动与江苏甬金加强沟通，利用短期出口信用保险帮助企业转变贸易方式，成功获得订单。",
-  "ha2",
-  "ha3",
-  "ha4",
 ];
 export default {
   components: {
@@ -185,6 +191,10 @@ export default {
           case "武器装备":
             obj.typeName = "武器装备";
             obj.type = "武器装备";
+            break;
+          case "WUQI":
+            obj.typeName = "武器装备";
+            obj.type = "WUQI";
             break;
           case "组织机构":
             obj.typeName = "组织机构";

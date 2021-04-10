@@ -30,7 +30,7 @@ export default {
       "entyRelaExct",
       "evenClass",
     ]);
-    let strName = ref("entyExct");
+    let strName = ref(window.location.hash.split("/")[1] || "entyExct");
 
     let router = vueRouter.useRouter();
     const handleRouter = (val) => {
@@ -68,6 +68,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  border-bottom: 1px solid #dcdcdc;
   p {
     cursor: pointer;
     &:hover {
