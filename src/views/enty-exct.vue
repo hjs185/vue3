@@ -204,6 +204,14 @@ export default {
             obj.typeName = "职位";
             obj.type = "职位";
             break;
+          case "WORKER":
+            obj.typeName = "职位";
+            obj.type = "WORKER";
+            break;
+          case "NATION":
+            obj.typeName = "国家";
+            obj.type = "NATION";
+            break;
           default:
             break;
         }

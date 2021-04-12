@@ -3,7 +3,11 @@ import axios from "axios";
 const Axios = (url, value, type = "post") => {
   return axios({
     method: type,
-    url,
+    // url:
+    //   process.env["NODE_ENV"] === "development"
+    //     ? url
+    //     : `http://10.30.10.141:9060${url}`,
+    url: `/api${url}`,
     data: {
       params: JSON.stringify(value)
     },

@@ -17,8 +17,6 @@
           <el-table
             :data="tableInfo"
             align="center"
-            @cell-click="tabClick"
-            @header-click="tabHeadClick"
             :header-cell-style="{ background: '#f5f7fa' }"
             height="380"
           >
@@ -61,12 +59,12 @@ export default {
   },
   setup() {
     let loading = ref(false);
+    let tableList = ref([]);
     let tableInfo = ref([]);
     let resultData = ref([]);
     let sativis = ref(null);
     let renderData = ref(null);
     let getDataTimer = ref(null);
-    let tabClickTimer = ref(null);
     let popUpRef = ref(null);
     let boxContent = ref({
       boxContent: {
@@ -84,14 +82,23 @@ export default {
         loading.value = false;
         let { code, object } = datas.data;
         if (code === "200") {
-          resultData.value = object.output.res;
+          tableList.value = object.output.res;
+          resultData.value = [
+            {
+              object: object.output.res[0].subject,
+              object_type: "",
+              predicate: "",
+              subject: "",
+              subject_type: "",
+            },
+          ];
           getData();
         }
       });
     };
 
     const getData = () => {
-      tableInfo.value = resultData.value;
+      tableInfo.value = tableList.value;
       renderData.value = dataHandler(resultData.value);
       sativis.value.clear();
       sativis.value.put(renderData.value);
@@ -108,17 +115,17 @@ export default {
     const dataHandler = (data) => {
       return data.reduce(
         (acc, cur) => {
-          let e1, e2;
-          let n1 = acc.nodes.find((n) => n.properties.name === cur.subject);
+          let e2;
+          // let n1 = acc.nodes.find((n) => n.properties.name === cur.subject);
           let n2 = acc.nodes.find((n) => n.properties.name === cur.object);
 
-          e1 = n1 || {
-            id: uuid(),
-            properties: {
-              name: cur.subject,
-              color: "#69b9f7",
-            },
-          };
+          // e1 = n1 || {
+          //   id: uuid(),
+          //   properties: {
+          //     name: cur.subject,
+          //     color: "#69b9f7",
+          //   },
+          // };
           e2 = n2 || {
             id: uuid(),
             properties: {
@@ -126,17 +133,17 @@ export default {
               color: "#69b9f7",
             },
           };
-          n1 || acc.nodes.push(e1);
+          // n1 || acc.nodes.push(e1);
           n2 || acc.nodes.push(e2);
-          acc.edges.push({
-            source: e1.id,
-            target: e2.id,
-            properties: {
-              color: null,
-              name: null,
-              type: cur.predicate,
-            },
-          });
+          // acc.edges.push({
+          //   source: e1.id,
+          //   target: e2.id,
+          //   properties: {
+          //     color: null,
+          //     name: null,
+          //     type: cur.predicate,
+          //   },
+          // });
           acc.nodes = filterDataNodes(acc.nodes);
           return acc;
         },
@@ -150,28 +157,6 @@ export default {
         obj[next.id] ? "" : (obj[next.id] = true && item.push(next));
         return item;
       }, []);
-    };
-
-    // 点击表格某行
-    const tabClick = (row) => {
-      let arr = [];
-      arr.push(row);
-      renderData.value = dataHandler(arr);
-      sativis.value.clear();
-      sativis.value.put(renderData.value);
-      tabClickTimer.value = setInterval(() => {
-        sativis.value.view.layout.warmup();
-      }, 50);
-
-      setTimeout(() => {
-        clearInterval(tabClickTimer.value);
-        sativis.value.view.layout.cooldown();
-      });
-    };
-
-    // 点击表头
-    const tabHeadClick = () => {
-      getData();
     };
 
     // 获取dom生命周期
@@ -193,8 +178,6 @@ export default {
       boxContent,
       loading,
       tableInfo,
-      tabClick,
-      tabHeadClick,
     };
   },
 };
