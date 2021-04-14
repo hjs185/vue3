@@ -18,7 +18,6 @@
           type="textarea"
           placeholder="请输入内容"
           :maxlength="500"
-          show-word-limit
           autosize
         ></el-input>
       </main>
@@ -130,7 +129,6 @@ main {
   padding: 24px;
   /deep/.el-textarea__inner {
     border: none;
-    max-height: 240px;
   }
 }
 footer {

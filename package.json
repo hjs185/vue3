@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "go": "vue-cli-service serve --mode development",
-    "build": "vue-cli-service build --mode production",
+    "build": "rm -rf platform && rm -rf platform.zip && vue-cli-service build --mode development --dest platform",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

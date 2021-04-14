@@ -47,7 +47,7 @@
 
 <script>
 import { Axios } from "@/axios";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, onBeforeUnmount } from "vue";
 import CommonWrap from "./common";
 
 import { evenClass } from "../../public/data";
@@ -158,6 +158,7 @@ export default {
       try {
         sativis.value.clear();
       } catch (error) {
+        sativis.value.clear();
         // todo: 当前出现清空图谱时报错,目前判断当未渲染图谱时清空导致的,所以catch异常信息,正常执行.若图谱有数据则可以正常清空图谱! 大概率与依存分析有关
       }
       putData(renderData.value);
@@ -172,7 +173,6 @@ export default {
 
     onMounted(() => {
       sativis.value = sati.network("#relat-graph-graph");
-      window.sativis = sativis.value;
       sativis.value.config.set("node.radius", 5);
       sativis.value.config.set("node.label.enable", true);
       sativis.value.config.set("edge.label.enable", true);
@@ -181,6 +181,11 @@ export default {
       });
     });
 
+    // 组件销毁时生命周期
+    onBeforeUnmount(() => {
+      sativis.value.clear();
+      clearInterval(timer.value);
+    });
     // 导入数据方法
     const putData = (data) => {
       try {

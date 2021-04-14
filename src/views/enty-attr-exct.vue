@@ -39,7 +39,7 @@
 window.parcelRequire = undefined;
 import { uuid } from "@/utils";
 import CommonWrap from "./common";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, onBeforeUnmount } from "vue";
 import { Axios } from "@/axios";
 import { entyAttrExct } from "../../public/data";
 
@@ -90,6 +90,9 @@ export default {
         }
       });
     };
+
+    // 初始化调用
+    handleAnalysis(TEXTLIST[0]);
 
     const getData = () => {
       tableInfo.value = tableList.value;
@@ -160,8 +163,12 @@ export default {
       sativis.value.config.set("node.radius", 5);
       sativis.value.config.set("node.label.enable", true);
       sativis.value.config.set("edge.label.enable", true);
-      // 初始化调用
-      handleAnalysis(TEXTLIST[0]);
+    });
+
+    // 组件销毁时生命周期
+    onBeforeUnmount(() => {
+      sativis.value.clear();
+      clearInterval(getDataTimer.value);
     });
 
     return {
